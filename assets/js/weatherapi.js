@@ -79,19 +79,21 @@ function findLocationWeather (lat, lon) {
 
     createCurrentWeather(weatherData);
 
-    create5DaysWeather(weatherData);
+   // create5DaysWeather(weatherData);
     
 }
-
-function createCurrentWeather () {
-
-}
-
+// This will add the weather data into specific ids on the index.html file
+function createCurrentWeather (weatherData) {
+    
 
 
-function create5DaysWeather () {
+
 
 }
+
+
+
+//function create5DaysWeather () {}
 
 
 
