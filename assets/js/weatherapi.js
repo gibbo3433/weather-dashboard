@@ -9,7 +9,6 @@ var chosenlocation = searchtext.value;
 function searchweatherlocation() {
 
 var chosenlocation = searchtext.value;
-console.log(searchtext.value)
 
 // If the user enters no text into the input, a windows error will be displayed
 if (chosenlocation === '') {
@@ -17,6 +16,7 @@ if (chosenlocation === '') {
     return;
 // If the user enters a valid location, then the findchosenlocation function will begin
 } else {
+    // checking whether the chosen location path is correct
     console.log(chosenlocation)
     findchosenlocation(chosenlocation)
 }}
@@ -36,8 +36,13 @@ function findchosenlocation (input) {
         return response.json();
       })
       .then(function (data) {
-        // Show the data found in the console
-        console.log(data);
+        // Show the data found in the console, only the first string in the array
+        console.log(data[0]);
+
+        // creates a var which holds the data for the chosen city the user has selected
+        var foundchoseneather = data[0];
+        // checking that the correct path has been taken - shows in the log the correct results
+        console.log(foundchoseneather)
       });
     }
 
