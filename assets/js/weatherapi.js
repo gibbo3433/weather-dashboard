@@ -7,22 +7,18 @@ var chosenLocation = searchText.value;
 
 // This fucntion adds the users choice of location to the console.log
 function searchweatherlocation() {
-
-var chosenLocation = searchText.value;
-
-// If the user enters no text into the input, a windows error will be displayed
-if (chosenLocation === '') {
+    var chosenLocation = searchText.value;
+    // If the user enters no text into the input, a windows error will be displayed
+    if (chosenLocation === '') {
     window.alert('Error, please enter a valid location')
     return;
-// If the user enters a valid location, then the findchosenlocation function will begin
-} else {
+    // If the user enters a valid location, then the findchosenlocation function will begin
+    } else {
     // checking whether the chosen location path is correct
     console.log(chosenLocation);
     findchosenlocation(chosenLocation);
-}}
-
-
-  
+}};
+ 
 // Finds the chosen location from the API
 function findchosenlocation (input) {
 
@@ -44,21 +40,45 @@ function findchosenlocation (input) {
         // checking that the correct path has been taken - shows in the log the correct results
         console.log(foundChosenWeather);
 
-        displaychosenweather(data[0]);  
+        displaychosenlocation(data[0]);  
       })
 
-    }
+}
 
 // function for inputting the data into a div to show the name of the place chosen and its country
-function displaychosenweather (weatherData) {
+function displaychosenlocation (weatherData) {
 
     // edits the textcontent to show the chosen city and its country
      document.getElementById('weather-name').textContent = `${weatherData.name}, ${weatherData.country}`;
 
      // starts a new function to show more weather data from the API
-     findweatherdata (weatherData.lat, weatherData.lon);
+     findLocationWeather (weatherData.lat, weatherData.lon);
 }
 
+function findLocationWeather (lat, lon) {
+
+    // This will find the weather associated with the latitude and longitude of the country chosen by the user
+    var findLocationWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+
+    // Get the weather date from the api, through json, into data we can use and display
+    fetch (findLocationWeather)
+
+     .then(function (response) {
+        return response.json();
+      })
+      .then(function (weatherData) {
+
+       // Shows me the weather data of the chosen city in the console log
+       console.log(weatherData)
+
+       // foundLocationWeather now holds the weather data for the chosen city
+       var foundLocationWeather = weatherData
+       console.log(foundLocationWeather)
+
+
+
+      });
+}
 
 
 
