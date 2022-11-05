@@ -75,10 +75,24 @@ function findLocationWeather (lat, lon) {
        var foundLocationWeather = weatherData
        console.log(foundLocationWeather)
 
-
-
       });
+
+    createCurrentWeather(weatherData);
+
+    create5DaysWeather(weatherData);
+    
 }
+
+function createCurrentWeather () {
+
+}
+
+
+
+function create5DaysWeather () {
+
+}
+
 
 
 
