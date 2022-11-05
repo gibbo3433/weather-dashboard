@@ -52,9 +52,11 @@ function findchosenlocation (input) {
 // function for inputting the data into a div to show the name of the place chosen and its country
 function displaychosenweather (weatherData) {
 
+    // edits the textcontent to show the chosen city and its country
      document.getElementById('weather-name').textContent = `${weatherData.name}, ${weatherData.country}`;
 
-
+     // starts a new function to show more weather data from the API
+     findweatherdata (weatherData.lat, weatherData.lon);
 }
 
 
