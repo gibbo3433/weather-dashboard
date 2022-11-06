@@ -83,22 +83,18 @@ function findLocationWeather (lat, lon) {
 // This will add the weather data into specific ids on the index.html file
 function createCurrentWeather (todayData) {
 
-  var createWeather = todayData.current; 
-
-  console.log(createWeather.temp) 
+  // This will transder the todayData.curretn from the gathered API into a new createWeather var
+  var createWeather = todayData.current;  
      
-  //document.getElementById('Icon')
-  document.getElementById("temp-number").style.display = "block";
- document.getElementById("temp-number").textContent = `${createWeather.temp}`;
-  //document.getElementById('wind').textContent = `${createWeather.wind_speed}`;
-  //document.getElementById('humid').textContent = `${createWeather.hummidity}`;
-  //document.getElementById('UVI').textContent = `${createWeather.uvi}`;
+  // here, the ids selected are being given new text in relation to what is being taken from the API and shown in the HTML
+ document.getElementById("temp").textContent = " Temperature = " + `${createWeather.temp}` + " °F 🌡";
+ document.getElementById('wind').textContent = " Wind Speed = " + `${createWeather.wind_speed}` + " mph ";
+ document.getElementById('humid').textContent = " Humidity = " + `${createWeather.humidity}` + " % ";
+ document.getElementById('UVI').textContent = " UVI Level = " + `${createWeather.uvi}` + " UV ";
+ document.getElementById('icon').textContent = `${createWeather.weather[0].child[0]}`
  
- console.log(document.getElementById('temp-number'))
-
 }
 
-console.log(document.getElementById('temp-number'))
 
 
 
