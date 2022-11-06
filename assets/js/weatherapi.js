@@ -69,11 +69,9 @@ function findLocationWeather(lat, lon) {
       createCurrentWeather(weatherData);
       createForecastWeather(weatherData);
     });
-
-
 }
 
-// This function will create 5 future forecast weathers for the chosen city and create a new div for them all to go in 
+// This function will create 5 future forecast weathers for the chosen city and create a new div for them all to go in
 function createForecastWeather(forecastData) {
   // Use the daily API data, not the current one presviously used
   var forecastWeather = forecastData.daily;
@@ -84,12 +82,15 @@ function createForecastWeather(forecastData) {
 
     // Tells the div how it should look and what it should include
     var forecastHTML = `
-    <h4 class="5date">${forecastWeather[i].dt = new Date().toDateString()}</h4>
+    <h4 class="5date">${(forecastWeather[i].dt =
+      new Date().toDateString())}</h4>
     <p class="5Temp"> Temperature: ${forecastWeather[i].temp.day} °F 🌡</p>
     <p class="5Wind"> Wind Speed: ${forecastWeather[i].wind_speed} mph</p>
     <p class="5Humid"> Humidity: ${forecastWeather[i].humidity} %</p>
     <p class="5UVI"> UVI level: ${forecastWeather[i].uvi} UV</p>
-    <img src="http://openweathermap.org/img/wn/${forecastWeather[i].weather[0].icon}@2x.png" alt="" class="5Icon">
+    <img src="http://openweathermap.org/img/wn/${
+      forecastWeather[i].weather[0].icon
+    }@2x.png" alt="" class="5Icon">
     `;
     div.innerHTML = forecastHTML;
     document.querySelector(".forecast").appendChild(div);
@@ -103,9 +104,7 @@ function createCurrentWeather(todayData) {
   var currentFullDate = new Date().toDateString(createWeather.dt * 1000);
 
   // here, the ids selected are being given new text in relation to what is being taken from the API and shown in the HTML
-  document.getElementById(
-    "date"
-  ).textContent = `${currentFullDate}`;
+  document.getElementById("date").textContent = `${currentFullDate}`;
   document.getElementById("temp").textContent =
     " Temperature: " + `${createWeather.temp}` + " °F 🌡";
   document.getElementById("wind").textContent =
