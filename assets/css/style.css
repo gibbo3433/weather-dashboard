@@ -6,7 +6,10 @@ h1 {
     font-weight: 300;
     font-size: x-large;
     background-color: aquamarine;
-    margin: 2%;
+    
+    margin: 1%;
+    padding: 1%;
+
 }
 
 
@@ -37,4 +40,8 @@ section {
     padding: 2%;
     font-size: xx-large;
 
+}
+
+#temp-number {
+    color: red;
 }

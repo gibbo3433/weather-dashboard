@@ -70,26 +70,35 @@ function findLocationWeather (lat, lon) {
 
        // Shows me the weather data of the chosen city in the console log
        console.log(weatherData)
-
-       // foundLocationWeather now holds the weather data for the chosen city
-       var foundLocationWeather = weatherData
-       console.log(foundLocationWeather)
+       
+       createCurrentWeather(weatherData);
 
       });
 
-    createCurrentWeather(weatherData);
+    
 
    // create5DaysWeather(weatherData);
     
 }
 // This will add the weather data into specific ids on the index.html file
-function createCurrentWeather (weatherData) {
-    
+function createCurrentWeather (todayData) {
 
+  var createWeather = todayData.current; 
 
-
+  console.log(createWeather.temp) 
+     
+  //document.getElementById('Icon')
+  document.getElementById("temp-number").style.display = "block";
+ document.getElementById("temp-number").textContent = `${createWeather.temp}`;
+  //document.getElementById('wind').textContent = `${createWeather.wind_speed}`;
+  //document.getElementById('humid').textContent = `${createWeather.hummidity}`;
+  //document.getElementById('UVI').textContent = `${createWeather.uvi}`;
+ 
+ console.log(document.getElementById('temp-number'))
 
 }
+
+console.log(document.getElementById('temp-number'))
 
 
 
@@ -108,3 +117,5 @@ function createCurrentWeather (weatherData) {
 
 
 searchButton.addEventListener("click", searchweatherlocation);
+
+
