@@ -26,28 +26,33 @@ THEN I am again presented with current and future conditions for that city
 
 - Adding to the local memory and then making sure it was saved for future uses
 
-I needed to work on making sure I located the data I needed to save to local memoruy and then make sure I reloaded it into the calendar
-once it reopened again and wasn't lost.
+I needed to work on making sure I located the data I needed to save to local memoruy and then make sure I reloaded it into
+the recent locations div once it reopened again and wasn't lost.
 
-- Changing the correct colours for the past, present and future styles
+- Making the forecast date correct with each day
 
-Creating an 'if, else if, else' function linked with the moment.js was difficult as I needed to make sure each newly created div was correcrtly styled
-depending on the time of the day.
+////////////////////
+
+- Adding in data from the API 
+
+I was confused at first at how to add in data from the API but after researching and with the use of console.log() too see
+where I was, I was able to use `${}` to add in the data I wanted into the correct places/create variables which included the data I needed.
 
 ## Future work
 
-- Change text styling on page 
-- Add extra buttons for check-boxes on tasks
+- Change colour and fonts  
+- Test if BootstrapAPI would be more suited to the styling
+- More inforamtion given to user about entering wrong cities into the input field
 
 I have added HTML alt: notes, CSS /*notes*/ and Javascript //notes to help any future edits by making it easier to see what the different elements are in the code and if any collaboration work will be done in the future. 
 
 ## Screenshot of completed webpage + Inspect
 
-![_C__Users_jgibb_Desktop_bootcamp_student_Work-day-scheduler_index html](https://user-images.githubusercontent.com/113479774/198893790-baf5f61e-d5df-48a7-87ed-6d1d5bea203e.png)
+////////////////////////////////////////////////////////////////////////////////////////
 
 ## Link to deployed application
 
-https://gibbo3433.github.io/Work-day-scheduler/
+////////////////////////////////////////////////////////////////////////////////////////
 
 ## Authors and acknowledgment
 
