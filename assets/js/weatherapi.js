@@ -1,6 +1,8 @@
 var searchButton = document.getElementById("search-button");
 var searchText = document.getElementById("search-text");
 
+var recentLocations = []
+
 // chosenlocation becomes what the user entered into the search text input
 var chosenLocation = searchText.value;
 
@@ -16,8 +18,54 @@ function searchweatherlocation() {
     // checking whether the chosen location path is correct
     console.log(chosenLocation);
     findchosenlocation(chosenLocation);
+
+    // This will start up the recent location function
+    addtorecentlocation(chosenLocation);
+
   }
 }
+// adds the newly searched city to the array
+function addtorecentlocation (recentlocation) {
+  if (!recentlocation) return;
+
+   // Add the searched location to the local storage and array
+  recentLocations.push(recentlocation);
+
+  localStorage.setItem("recentlocations", JSON.stringify(recentLocations));
+
+  console.log(recentLocations)
+
+  updaterecentlocations();
+}
+
+function updaterecentlocations () {
+
+  // select the recent locations list
+  var locationslist = document.getElementById("recent-locations");
+
+  // clear the recent locations list
+  locationslist.innerHTML = "";
+
+  // Add the new city
+  recentLocations.forEach(location {
+
+    var newCity = document.createElement('div');
+    newCity.classList.add('recent');
+    console.log(location);
+    newCity.textContent = location?name:
+
+    
+    
+   })
+
+
+
+
+}
+
+
+
+
 
 // Finds the chosen location from the API
 function findchosenlocation(input) {
@@ -37,7 +85,8 @@ function findchosenlocation(input) {
       var foundChosenWeather = data[0];
       // checking that the correct path has been taken - shows in the log the correct results
       console.log(foundChosenWeather);
-
+ 
+     // This will start up the chosen location function
       displaychosenlocation(data[0]);
     });
 }
@@ -75,6 +124,8 @@ function findLocationWeather(lat, lon) {
 function createForecastWeather(forecastData) {
   // Use the daily API data, not the current one presviously used
   var forecastWeather = forecastData.daily;
+
+
 
   // Creates the 5 new divs for the forecast
   for (var i = 0; i < 5; i++) {
