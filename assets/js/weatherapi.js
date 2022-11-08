@@ -103,7 +103,6 @@ function displaychosenlocation(weatherData) {
 function findLocationWeather(lat, lon) {
   // This will find the weather associated with the latitude and longitude of the country chosen by the user
   var findLocationWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=metric`;
-  console.log(findLocationWeather);
 
   // Get the weather date from the api, through json, into data we can use and display
   fetch(findLocationWeather)
