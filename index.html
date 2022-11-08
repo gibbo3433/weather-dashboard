@@ -13,10 +13,12 @@
 
   <body>
     <header>
+      <!--  This is the title for the entire page   -->
       <h1>🌈 Weather Dashboard 🌈</h1>
     </header>
 
     <main>
+      <!-- This aside will sit to the right and contain the input, button and recent-search div for the user   -->
       <aside>
         <div id="search-section">
           <input type="text" id="search-text" placeholder="Enter a location" />
@@ -26,10 +28,11 @@
       </aside>
 
       <section>
+        <!-- This will display the current city's name and weather    -->
         <div class="weather">
           <div class="weather-top-today">
             <h2 id="weather-name"></h2>
-
+              <!-- This will show the weather of the ity in each of its id'd divs   -->
             <div class="weather-top-info">
               <div id="date"></div>
               <div id="temp"></div>
@@ -43,6 +46,7 @@
       </section>
     </main>
 
+    <!-- Here the newly created forecast divs from JavaScript will be displayed to show the next 5 days  -->
     <div id="forecast-area" class="forecast-area"></div>
   </body>
 
