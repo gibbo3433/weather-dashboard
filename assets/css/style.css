@@ -1,51 +1,52 @@
-
 h1 {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: x-large;
-    background-color: aquamarine;
-    
-    margin: 1%;
-    padding: 1%;
-
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: x-large;
+  background-color: aquamarine;
+  margin: 1%;
+  padding: 1%;
 }
-
 
 main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-
-aside, section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+aside,
+section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .forecast-future {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-#recent-location, #search-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1%;
+#recent-location,
+#search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1%;
 }
 
-
-#date, #temp, #wind, #humid, #UVI, #icon-img {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+#date,
+#temp,
+#wind,
+#humid,
+#UVI,
+#icon-img {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
