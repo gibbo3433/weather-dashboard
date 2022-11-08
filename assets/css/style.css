@@ -1,3 +1,4 @@
+/* styling of the headers so they are larger and stand out more*/
 h1,
 h2 {
   text-align: center;
@@ -18,6 +19,7 @@ main {
   padding: .5%;
 }
 
+/* Makinf the main top sections sit next to each other*/
 aside,
 section {
   display: flex;
@@ -40,6 +42,7 @@ section {
   padding: .5%;
 }
 
+/* styling of the created recent-locaton divs*/
 #recent-location,
 #search-section {
   display: flex;
@@ -51,6 +54,7 @@ section {
   padding: .5%;
 }
 
+/* styling of the created forercast divs*/
 #date,
 #temp,
 #wind,
@@ -66,3 +70,21 @@ section {
   margin: .5%;
   padding: .5%;
 }
+
+/* changes elements of the page when the screen of the user is different*/
+@media screen and (max-width: 768px) {
+#date,
+#temp,
+#wind,
+#humid,
+#UVI,
+#icon-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} aside,
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}}
