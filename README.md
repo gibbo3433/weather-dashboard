@@ -50,11 +50,11 @@ I have added HTML <!--notes-->, CSS /*notes*/ and Javascript //notes to help any
 
 ## Screenshot of completed webpage + Inspect
 
-////////////////////////////////////////////////////////////////////////////////////////
+![weatherdashboardscreenshot](https://user-images.githubusercontent.com/113479774/200648821-07e98c2e-2949-4bf9-a26c-1bb46d06477e.png)
 
 ## Link to deployed application
 
-////////////////////////////////////////////////////////////////////////////////////////
+https://gibbo3433.github.io/weather-dashboard/
 
 ## Authors and acknowledgment
 
