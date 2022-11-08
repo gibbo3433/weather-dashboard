@@ -31,7 +31,9 @@ the recent locations div once it reopened again and wasn't lost.
 
 - Making the forecast date correct with each day
 
-////////////////////
+I could not get the date from the API to be in the format I wanted it to be in (DD/MM/YYYY) and instead it was coming up as a large number (e.g - 1480300000)
+After researching, I found that I needed to (dt * 1000) my number to get my timestamp into the format I needed.
+This is the function I ended up using = new Date(todayForcast.dt * 1000).toLocaleDateString("en-GB")
 
 - Adding in data from the API 
 
@@ -39,12 +41,12 @@ I was confused at first at how to add in data from the API but after researching
 where I was, I was able to use `${}` to add in the data I wanted into the correct places/create variables which included the data I needed.
 
 ## Future work
-
-- Change colour and fonts  
+  
 - Test if BootstrapAPI would be more suited to the styling
-- More inforamtion given to user about entering wrong cities into the input field
+- More information given to user about entering wrong cities into the input field
+- More information pulled from the API to show the user (UVI, wind degrees, etc)
 
-I have added HTML alt: notes, CSS /*notes*/ and Javascript //notes to help any future edits by making it easier to see what the different elements are in the code and if any collaboration work will be done in the future. 
+I have added HTML <!--notes-->, CSS /*notes*/ and Javascript //notes to help any future edits by making it easier to see what the different elements are in the code so that if any collaboration work will be done in the future, it will be easiser to track and change.
 
 ## Screenshot of completed webpage + Inspect
 
