@@ -68,7 +68,7 @@ function onClickRecentLocation(event) {
 // Finds the chosen location from the API
 function findchosenlocation(input) {
   // This will add my users chosenlocation in to the API search and add my API key so that it allows me the chosen data
-  var findChosenWeather = `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+  var findChosenWeather = `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=metric`;
 
   // fetch the data from the api, related to what the user inputed
   fetch(findChosenWeather)
@@ -102,8 +102,7 @@ function displaychosenlocation(weatherData) {
 
 function findLocationWeather(lat, lon) {
   // This will find the weather associated with the latitude and longitude of the country chosen by the user
-  //var findLocationWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
-  var findLocationWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+  var findLocationWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=metric`;
   console.log(findLocationWeather);
 
   // Get the weather date from the api, through json, into data we can use and display
@@ -134,7 +133,7 @@ function createForecastWeather(forecastData) {
     var todayDate = new Date(todayForcast.dt * 1000).toLocaleDateString(
       "en-GB"
     );
-    var todayTemp = "Temperature: " + `${todayForcast.main.temp}` + "°F 🌡";
+    var todayTemp = "Temperature: " + `${todayForcast.main.temp}` + "°c 🌡";
     var todayWind = "Wind Speed: " + `${todayForcast.wind.speed}` + " mph";
     var todayHumid = "Humidity: " + `${todayForcast.main.humidity}` + " %";
     var todayIcon = `${todayForcast.weather[0].icon}`;
@@ -174,7 +173,7 @@ function createCurrentWeather(todayData) {
   // here, the ids selected are being given new text in relation to what is being taken from the API and shown in the HTML
   document.getElementById("date").textContent = `${dateToday}`;
   document.getElementById("temp").textContent =
-    " Temperature: " + `${todayData.list[0].main.temp}` + " °K 🌡";
+    " Temperature: " + `${todayData.list[0].main.temp}` + " °C 🌡";
   document.getElementById("wind").textContent =
     " Wind Speed: " + `${todayData.list[0].wind.speed}` + " mph ";
   document.getElementById("humid").textContent =
