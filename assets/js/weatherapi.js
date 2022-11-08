@@ -1,7 +1,8 @@
 var searchButton = document.getElementById("search-button");
 var searchText = document.getElementById("search-text");
 
-var recentLocations = []
+// An empty array which will be filled by the users cities input
+var searchHistory = [];
 
 // chosenlocation becomes what the user entered into the search text input
 var chosenLocation = searchText.value;
@@ -17,55 +18,52 @@ function searchweatherlocation() {
   } else {
     // checking whether the chosen location path is correct
     console.log(chosenLocation);
+
+    searchHistory.push(chosenLocation);
+    localStorage.setItem("search-history", JSON.stringify(searchHistory));
+
+    createSearchHistoryDiv();
+
     findchosenlocation(chosenLocation);
-
-    // This will start up the recent location function
-    addtorecentlocation(chosenLocation);
-
   }
 }
-// adds the newly searched city to the array
-function addtorecentlocation (recentlocation) {
-  if (!recentlocation) return;
 
-   // Add the searched location to the local storage and array
-  recentLocations.push(recentlocation);
+function startSearchHistory() {
+  // this will fill the specific search history div if there are any in the local storage
 
-  localStorage.setItem("recentlocations", JSON.stringify(recentLocations));
-
-  console.log(recentLocations)
-
-  updaterecentlocations();
+  if (localStorage.getItem("search-history")) {
+    searchHistory = JSON.parse(localStorage.getItem("search-history"));
+    // will let me see what is inside my search history
+    console.log(searchHistory);
+    // this will render the search histories contents into a new divs in a new function
+    createSearchHistoryDiv();
+  } else {
+    document.getElementById("recent-location").textContent = "-";
+  }
 }
 
-function updaterecentlocations () {
+function createSearchHistoryDiv() {
+  var recentLocationDiv = document.getElementById("recent-location");
 
-  // select the recent locations list
-  var locationslist = document.getElementById("recent-locations");
+  // Sets the div to blank, ready to be updated with the local storage
+  recentLocationDiv.innerHTML = "";
 
-  // clear the recent locations list
-  locationslist.innerHTML = "";
+  // For loop creates a new div for each city searched for in the local storage
+  for (i = 0; i < searchHistory.length; i++) {
+    var recentCity = document.createElement("div");
+    recentCity.classList.add("added-locations");
+    recentCity.textContent = searchHistory[i];
+    recentCity.addEventListener("click", onClickRecentLocation);
 
-  // Add the new city
-  recentLocations.forEach(location {
-
-    var newCity = document.createElement('div');
-    newCity.classList.add('recent');
-    console.log(location);
-    newCity.textContent = location?name:
-
-    
-    
-   })
-
-
-
-
+    recentLocationDiv.appendChild(recentCity);
+  }
 }
 
-
-
-
+// This will run if the user clicks on a city located in the recent locations div and will run that city back through the weather search
+function onClickRecentLocation(event) {
+  var recentCityChosen = event.target.textContent;
+  findchosenlocation(recentCityChosen);
+}
 
 // Finds the chosen location from the API
 function findchosenlocation(input) {
@@ -85,8 +83,8 @@ function findchosenlocation(input) {
       var foundChosenWeather = data[0];
       // checking that the correct path has been taken - shows in the log the correct results
       console.log(foundChosenWeather);
- 
-     // This will start up the chosen location function
+
+      // This will start up the chosen location function
       displaychosenlocation(data[0]);
     });
 }
@@ -104,7 +102,9 @@ function displaychosenlocation(weatherData) {
 
 function findLocationWeather(lat, lon) {
   // This will find the weather associated with the latitude and longitude of the country chosen by the user
-  var findLocationWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+  //var findLocationWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+  var findLocationWeather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9`;
+  console.log(findLocationWeather);
 
   // Get the weather date from the api, through json, into data we can use and display
   fetch(findLocationWeather)
@@ -120,57 +120,70 @@ function findLocationWeather(lat, lon) {
     });
 }
 
-// This function will create 5 future forecast weathers for the chosen city and create a new div for them all to go in
+// This function will create 5 future forecast weathers for the chosen city
 function createForecastWeather(forecastData) {
-  // Use the daily API data, not the current one presviously used
-  var forecastWeather = forecastData.daily;
+  // Clear the id=forecast in the index page
+  var forecastHtml = document.getElementById("forecast-area");
+  forecastHtml.innerHTML = "";
 
+  // Creates the 5 new divs for the forecast, makes sure to get every 8th array as this is when the API gives me a new day
+  for (var i = 0; i < 40; i += 8) {
+    var todayForcast = forecastData.list[i];
 
+    // These var allow me to choose what to take from the API what I need about the weather
+    var todayDate = new Date(todayForcast.dt * 1000).toLocaleDateString(
+      "en-GB"
+    );
+    var todayTemp = "Temperature: " + `${todayForcast.main.temp}` + "°F 🌡";
+    var todayWind = "Wind Speed: " + `${todayForcast.wind.speed}` + " mph";
+    var todayHumid = "Humidity: " + `${todayForcast.main.humidity}` + " %";
+    var todayIcon = `${todayForcast.weather[0].icon}`;
 
-  // Creates the 5 new divs for the forecast
-  for (var i = 0; i < 5; i++) {
-    var div = document.createElement("div");
+    // create a new div and add in all of the shown classes with the newly created var
+    var todayDiv = document.createElement("div");
+    todayDiv.classList.add("forecast-days");
+    todayDiv.innerHTML = `<div class="forecast-future">
+    <div class="5date">
+        <div>${todayDate}</div>
+    </div>
+    <div class="5icon">
+        <img src="https://openweathermap.org/img/wn/${todayIcon}@2x.png"/>
+    </div>
+    <div class="5temp">
+        <div>${todayTemp}</div>
+    </div>
+    <div class="5humid">
+        <span>${todayHumid}</span>
+    </div>
+    <div class="5wind">
+        <span>${todayWind}</span>
+    </div>
+     </div>`;
 
-    // Tells the div how it should look and what it should include
-    var forecastHTML = `
-    <h4 class="5date">${(forecastWeather[i].dt =
-      new Date().toDateString())}</h4>
-    <p class="5Temp"> Temperature: ${forecastWeather[i].temp.day} °F 🌡</p>
-    <p class="5Wind"> Wind Speed: ${forecastWeather[i].wind_speed} mph</p>
-    <p class="5Humid"> Humidity: ${forecastWeather[i].humidity} %</p>
-    <p class="5UVI"> UVI level: ${forecastWeather[i].uvi} UV</p>
-    <img src="http://openweathermap.org/img/wn/${
-      forecastWeather[i].weather[0].icon
-    }@2x.png" alt="" class="5Icon">
-    `;
-    div.innerHTML = forecastHTML;
-    document.querySelector(".forecast").appendChild(div);
+    // add the newly created div to the id=forecast-area div
+    forecastHtml.appendChild(todayDiv);
   }
 }
+
 // This will add the weather data into specific ids on the index.html file
 function createCurrentWeather(todayData) {
-  // This will transder the todayData.curretn from the gathered API into a new createWeather var
-  var createWeather = todayData.current;
-  // This will set the date in a neat way on our page
-  var currentFullDate = new Date().toDateString(createWeather.dt * 1000);
+  console.log(todayData);
+
+  var dateToday = new Date().toDateString(todayData.list[0].dt * 1000);
 
   // here, the ids selected are being given new text in relation to what is being taken from the API and shown in the HTML
-  document.getElementById("date").textContent = `${currentFullDate}`;
+  document.getElementById("date").textContent = `${dateToday}`;
   document.getElementById("temp").textContent =
-    " Temperature: " + `${createWeather.temp}` + " °F 🌡";
+    " Temperature: " + `${todayData.list[0].main.temp}` + " °K 🌡";
   document.getElementById("wind").textContent =
-    " Wind Speed: " + `${createWeather.wind_speed}` + " mph ";
+    " Wind Speed: " + `${todayData.list[0].wind.speed}` + " mph ";
   document.getElementById("humid").textContent =
-    " Humidity: " + `${createWeather.humidity}` + " % ";
-  document.getElementById("UVI").textContent =
-    " UVI Level: " + `${createWeather.uvi}` + " UV ";
+    " Humidity: " + `${todayData.list[0].main.humidity}` + " % ";
   document.getElementById(
     "icon-img"
-  ).src = `http://openweathermap.org/img/wn/${createWeather.weather[0].icon}@2x.png`;
+  ).src = `http://openweathermap.org/img/wn/${todayData.list[0].weather[0].icon}@2x.png`;
 }
 
-//function create5DaysWeather () {}
-
-// Heres needs to be the addd to the recent location area
+startSearchHistory();
 
 searchButton.addEventListener("click", searchweatherlocation);

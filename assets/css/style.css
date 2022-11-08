@@ -31,7 +31,15 @@ aside, section {
     align-items: center;
 }
 
-.forecast {
+.added-location {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.forecast-future {
     display: flex;
     flex-direction: row;
     align-items: center;
